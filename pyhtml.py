@@ -1,3 +1,4 @@
+
 class HTML:
 
     def __init__(self, name, lang):
@@ -15,6 +16,7 @@ class HTML:
 
         title = "\t<title>{}</title>\n".format(title)
 
+        
         self.hd = "<head>\n" + title + "</head>\n"
         
     def body(self, *bd_elements:str):
@@ -23,23 +25,29 @@ class HTML:
 
         concat = ""
         for elem in bd_elements:
+            elem = '  ' + elem 
             concat += elem
 
         self.bd = bd_open + concat + bd_close
 
+    def button(self, text, autofocus=None, disabled=None, form=None,form_action=None):
+        button_start = "<button>"
+        button_end = "</button>\n"
 
-    def write(self):
-        doc = self.html_open + self.hd + self.bd + self.html_close
-        self.html.writelines(doc)
+        text = button_start + text + button_end
+        return text
 
     def p(self, text):
-        text = "\t<p>{}</p>\n".format(text)
+        text = "<p>{}</p>\n".format(text)
         return text
          
     def h(self, n, text):
-        text = "\t<h{}>{}</h{}>\n".format(n, text, n)
+        text = "<h{}>{}</h{}>\n".format(n, text, n)
         return text
-
+    
+    def write(self):
+        doc = self.html_open + self.hd + self.bd + self.html_close
+        self.html.writelines(doc)
 
 class Table:
     def __init__(self, caption):
