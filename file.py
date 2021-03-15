@@ -5,9 +5,9 @@ doc.head(title="title")
 
 doc.body(
     doc.p("some text"),
-    doc.h(3,"h3 text"),
+    doc.a(href="#p1", text="Summer"),
     doc.button('button')
 
 )
-doc.write()
+doc.update()
 

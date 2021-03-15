@@ -6,7 +6,7 @@ class HTML:
         self.lang = lang
         self.html = open(self.name, "w+")
 
-        self.html_open = "<html>\n"
+        self.html_open = "<!DOCTYPE html>\n<html>\n"
         self.html_close = "</html>"
 
         self.hd = ""
@@ -31,24 +31,45 @@ class HTML:
         self.bd = bd_open + concat + bd_close
 
     def button(self, text, autofocus=None, disabled=None, form=None,form_action=None):
-        button_start = "<button>"
-        button_end = "</button>\n"
-
-        text = button_start + text + button_end
+        
+        text = "<button>{}</button>\n".format(text)
         return text
 
     def p(self, text):
         text = "<p>{}</p>\n".format(text)
+        return text
+
+    def b(self, text):
+        text = "<b>{}</b>\n".format(text)
+        return text
+
+    def a(self, href, text):
+        a_start = "<a "
+        a_end = "</a>\n"
+        href = 'href="{}">'.format(href)
+        text = a_start + href + text + a_end
+        return text
+
+    def br(self):
+        return "<br>"
+
+    def i(self, text):
+        text = "<i>{}</i>\n".format(text)
+        return text
+
+    def script(self, text):
+        text = "<script>{}</script>\n".format(text)
         return text
          
     def h(self, n, text):
         text = "<h{}>{}</h{}>\n".format(n, text, n)
         return text
     
-    def write(self):
+    def update(self):
         doc = self.html_open + self.hd + self.bd + self.html_close
         self.html.writelines(doc)
-
+    
+    
 class Table:
     def __init__(self, caption):
         self.table_start = "<table>\n"
@@ -75,7 +96,14 @@ class Table:
         self.code = self.table_start + self.caption + self.tr + self.td + self.table_end
         return self.code
         
-
+global_attrs = {
+    "accesskey": "",
+    "class": "",
+    "id": "",
+    "style": "",
+    "title": "",
+    "tabindex":,
+}
     
 
 
